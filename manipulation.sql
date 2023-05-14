@@ -5,7 +5,7 @@
 --  Created by F.P. Severino, R. G. Scolari and D. Campisi on 14/05/23.
 -- 
 
-USE concessionaria;
+USE concessionaria_db;
 
 INSERT INTO Sede VALUES (1, 'Milano', 'MI', 'Piazza del Liberty 1');
 INSERT INTO Sede VALUES (2, 'Roma', 'RM', 'Via del Corso 181');

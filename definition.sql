@@ -21,10 +21,10 @@ CREATE TABLE IF NOT EXISTS Impiegato (
     Cognome VARCHAR(30) NOT NULL,
     DataNascita DATE NOT NULL,
     CF VARCHAR(16) NOT NULL,
-    Contratto VARCHAR(30) NOT NULL,
+    Contratto ENUM('Determinato', 'Indeterminato') NOT NULL,
     Stipendio INT NOT NULL,
     Sede INT NOT NULL,
-    Categoria VARCHAR(30) NOT NULL,
+    Categoria ENUM('Venditore', 'Manager', 'Meccanico', 'Contabile') NOT NULL, -- enum non necessario, ma rispetta il modello
     PRIMARY KEY (Matricola),
     FOREIGN KEY (Sede) REFERENCES Sede(NumSede)
 );
@@ -40,16 +40,16 @@ CREATE TRIGGER IF NOT EXISTS checkManager
 BEFORE INSERT ON Manager
 FOR EACH ROW
 BEGIN
-    IF (SELECT Categoria FROM Impiegato WHERE Matricola = NEW.Impiegato) <> "Manager" THEN
+    IF (SELECT Categoria FROM Impiegato WHERE Matricola = NEW.Impiegato) <> 'Manager' THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'L''impiegato non è un manager';
     END IF;
 END;
 
 CREATE TABLE IF NOT EXISTS Motore (
     Nome VARCHAR(30) NOT NULL,
-    Alimentazione VARCHAR(30) NOT NULL,
-    Trasmissione VARCHAR(30) NOT NULL,
-    Trazione VARCHAR(30) NOT NULL,
+    Alimentazione ENUM('Diesel', 'Benzina', 'GPL', 'Ibrida', 'Elettrica') NOT NULL,
+    Trasmissione ENUM('Manuale', 'Automatica') NOT NULL,
+    Trazione ENUM('Anteriore', 'Posteriore', 'Integrale') NOT NULL,
     CV INT NOT NULL,
     PRIMARY KEY (Nome)
 );
@@ -106,7 +106,7 @@ CREATE TRIGGER IF NOT EXISTS checkMeccanico
 BEFORE INSERT ON Specializzazione
 FOR EACH ROW
 BEGIN
-    IF (SELECT Categoria FROM Impiegato WHERE Matricola = NEW.Impiegato) <> "Meccanico" THEN
+    IF (SELECT Categoria FROM Impiegato WHERE Matricola = NEW.Impiegato) <> 'Meccanico' THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'L''impiegato non è un meccanico';
     END IF;
 END;
@@ -125,7 +125,7 @@ CREATE TRIGGER IF NOT EXISTS checkRiparazione
 BEFORE INSERT ON Riparazione
 FOR EACH ROW
 BEGIN
-    IF (SELECT Categoria FROM Impiegato WHERE Matricola = NEW.Impiegato) <> "Meccanico" THEN
+    IF (SELECT Categoria FROM Impiegato WHERE Matricola = NEW.Impiegato) <> 'Meccanico' THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'L''impiegato non è un meccanico';
     END IF;
 END;
@@ -155,7 +155,7 @@ CREATE TRIGGER IF NOT EXISTS checkVenditore
 BEFORE INSERT ON Vendita
 FOR EACH ROW
 BEGIN
-    IF (SELECT Categoria FROM Impiegato WHERE Matricola = NEW.Impiegato) <> "Venditore" THEN
+    IF (SELECT Categoria FROM Impiegato WHERE Matricola = NEW.Impiegato) <> 'Venditore' THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'L''impiegato non è un venditore';
     END IF;
 END;

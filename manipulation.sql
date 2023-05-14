@@ -7,11 +7,12 @@
 
 USE concessionaria_db;
 
-INSERT INTO Sede VALUES (1, 'Milano', 'MI', 'Piazza del Liberty 1');
-INSERT INTO Sede VALUES (2, 'Roma', 'RM', 'Via del Corso 181');
-INSERT INTO Sede VALUES (3, 'Napoli', 'NA', 'Via Alessandro Scarlatti 76');
-INSERT INTO Sede VALUES (4, 'Catania', 'CT', 'Via Etnea 50');
-INSERT INTO Sede VALUES (5, 'Palermo', 'PA', 'Via Notarbartolo 24');
+INSERT INTO Sede (Comune, Provincia, Indirizzo) VALUES
+    ('Milano', 'MI', 'Piazza del Liberty 1'),
+    ('Roma', 'RM', 'Via del Corso 181'),
+    ('Napoli', 'NA', 'Via Alessandro Scarlatti 76'),
+    ('Catania', 'CT', 'Via Etnea 50'),
+    ('Palermo', 'PA', 'Via Notarbartolo 24');
 
 INSERT INTO Impiegato VALUES (1, 'Mario', 'Rossi', '1980-01-01', 'RSSMRA80A01H501A', 'Indeterminato', 1700, 1, 'Venditore');
 INSERT INTO Impiegato VALUES (2, 'Giulia', 'Ferrari', '1992-08-12', 'FRRGLI92M52L219X', 'Indeterminato', 1700, 2, 'Venditore');

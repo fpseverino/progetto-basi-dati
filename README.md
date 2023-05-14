@@ -13,3 +13,16 @@ Si devono prevedere inoltre le seguenti interrogazioni:
 - 5 interrogazioni nidificate (almeno una che preveda binding e una che preveda due sotto-livelli);
 - 2 interrogazioni che impieghino viste;
 - 3 interrogazioni con operatori insiemistici.
+
+#### Schema logico
+- Impiegato(<ins>Matricola</ins>, Nome, Cognome, DataNascita, CF, Contratto, Stipendio, Sede, Categoria)
+- Sede(<ins>NumSede</ins>, Comune, Provincia, Indirizzo)
+- Manager(<ins>Impiegato</ins>, Incarico)
+- Auto(<ins>NTelaio</ins>, Colore, KM, Venduta, Modello)
+- Disponibilità(<ins>Auto</ins>, <ins>Sede</ins>)
+- Modello(<ins>Nome</ins>, Marchio, Porte, Posti, PrezzoCons, Motore)
+- Motore(<ins>Nome</ins>, Alimentazione, Trasmissione, Trazione, CV)
+- Specializzazione(<ins>Impiegato</ins>, <ins>Motore</ins>)
+- Riparazione(<ins>Impiegato</ins>, <ins>Auto</ins>, <ins>Data</ins>, <ins>Descrizione</ins>)
+- Cliente(<ins>CodCliente</ins>, Nome, Cognome, DataNascita, CF)
+- Vendita(<ins>Impiegato</ins>, <ins>Auto</ins>, <ins>Cliente</ins>, Data, Prezzo)

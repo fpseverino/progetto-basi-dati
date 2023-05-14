@@ -7,6 +7,14 @@
 
 CREATE DATABASE IF NOT EXISTS concessionaria_db;
 
+CREATE TABLE IF NOT EXISTS Sede (
+    NumSede INT NOT NULL AUTO_INCREMENT,
+    Comune VARCHAR(30) NOT NULL,
+    Provincia VARCHAR(2) NOT NULL,
+    Indirizzo VARCHAR(30) NOT NULL,
+    PRIMARY KEY (NumSede)
+);
+
 CREATE TABLE IF NOT EXISTS Impiegato (
     Matricola INT NOT NULL AUTO_INCREMENT,
     Nome VARCHAR(30) NOT NULL,
@@ -19,14 +27,6 @@ CREATE TABLE IF NOT EXISTS Impiegato (
     Categoria VARCHAR(30) NOT NULL,
     PRIMARY KEY (Matricola),
     FOREIGN KEY (Sede) REFERENCES Sede(NumSede)
-);
-
-CREATE TABLE IF NOT EXISTS Sede (
-    NumSede INT NOT NULL AUTO_INCREMENT,
-    Comune VARCHAR(30) NOT NULL,
-    Provincia VARCHAR(2) NOT NULL,
-    Indirizzo VARCHAR(30) NOT NULL,
-    PRIMARY KEY (NumSede)
 );
 
 CREATE TABLE IF NOT EXISTS Manager (
@@ -44,6 +44,27 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'L''impiegato non è un manager';
     END IF;
 END;
+
+CREATE TABLE IF NOT EXISTS Motore (
+    Nome VARCHAR(30) NOT NULL,
+    Alimentazione VARCHAR(30) NOT NULL,
+    Trasmissione VARCHAR(30) NOT NULL,
+    Trazione VARCHAR(30) NOT NULL,
+    CV INT NOT NULL,
+    PRIMARY KEY (Nome)
+);
+
+CREATE TABLE IF NOT EXISTS Modello (
+    Nome VARCHAR(40) NOT NULL,
+    Marchio VARCHAR(40) NOT NULL,
+    Porte INT NOT NULL,
+    Posti INT NOT NULL,
+    PrezzoCons INT NOT NULL,
+    Motore VARCHAR(30) NOT NULL,
+    PRIMARY KEY (Nome),
+    FOREIGN KEY (Motore) REFERENCES Motore(Nome)
+);
+
 
 CREATE TABLE IF NOT EXISTS Auto (
     NTelaio INT NOT NULL,
@@ -72,25 +93,6 @@ BEGIN
     END IF;
 END;
 
-CREATE TABLE IF NOT EXISTS Modello (
-    Nome VARCHAR(40) NOT NULL,
-    Marchio VARCHAR(40) NOT NULL,
-    Porte INT NOT NULL,
-    Posti INT NOT NULL,
-    PrezzoCons INT NOT NULL,
-    Motore VARCHAR(30) NOT NULL,
-    PRIMARY KEY (Nome),
-    FOREIGN KEY (Motore) REFERENCES Motore(Nome)
-);
-
-CREATE TABLE IF NOT EXISTS Motore (
-    Nome VARCHAR(30) NOT NULL,
-    Alimentazione VARCHAR(30) NOT NULL,
-    Trasmissione VARCHAR(30) NOT NULL,
-    Trazione VARCHAR(30) NOT NULL,
-    CV INT NOT NULL,
-    PRIMARY KEY (Nome)
-);
 
 CREATE TABLE IF NOT EXISTS Specializzazione (
     Impiegato INT NOT NULL,

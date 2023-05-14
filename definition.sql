@@ -8,7 +8,7 @@
 CREATE DATABASE IF NOT EXISTS concessionaria;
 
 CREATE TABLE IF NOT EXISTS Impiegato (
-    Matricola INT NOT NULL,
+    Matricola INT NOT NULL AUTO_INCREMENT,
     Nome VARCHAR(30) NOT NULL,
     Cognome VARCHAR(30) NOT NULL,
     DataNascita DATE NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Impiegato (
 );
 
 CREATE TABLE IF NOT EXISTS Sede (
-    NumSede INT NOT NULL,
+    NumSede INT NOT NULL AUTO_INCREMENT,
     Comune VARCHAR(30) NOT NULL,
     Provincia VARCHAR(2) NOT NULL,
     Indirizzo VARCHAR(30) NOT NULL,
@@ -35,6 +35,15 @@ CREATE TABLE IF NOT EXISTS Manager (
     PRIMARY KEY (Impiegato),
     FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola)
 );
+
+CREATE TRIGGER IF NOT EXISTS checkManager
+BEFORE INSERT ON Manager
+FOR EACH ROW
+BEGIN
+    IF (SELECT Categoria FROM Impiegato WHERE Matricola = NEW.Impiegato) <> "Manager" THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'L''impiegato non è un manager';
+    END IF;
+END;
 
 CREATE TABLE IF NOT EXISTS Auto (
     NTelaio INT NOT NULL,
@@ -53,6 +62,15 @@ CREATE TABLE IF NOT EXISTS Disponibilita (
     FOREIGN KEY (Auto) REFERENCES Auto(NTelaio),
     FOREIGN KEY (Sede) REFERENCES Sede(NumSede)
 );
+
+CREATE TRIGGER IF NOT EXISTS checkVenduta
+BEFORE INSERT ON Disponibilita
+FOR EACH ROW
+BEGIN
+    IF (SELECT Venduta FROM Auto WHERE NTelaio = NEW.Auto) <> 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'L''auto è già stata venduta';
+    END IF;
+END;
 
 CREATE TABLE IF NOT EXISTS Modello (
     Nome VARCHAR(30) NOT NULL,
@@ -82,6 +100,15 @@ CREATE TABLE IF NOT EXISTS Specializzazione (
     FOREIGN KEY (Motore) REFERENCES Motore(Nome)
 );
 
+CREATE TRIGGER IF NOT EXISTS checkMeccanico
+BEFORE INSERT ON Specializzazione
+FOR EACH ROW
+BEGIN
+    IF (SELECT Categoria FROM Impiegato WHERE Matricola = NEW.Impiegato) <> "Meccanico" THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'L''impiegato non è un meccanico';
+    END IF;
+END;
+
 CREATE TABLE IF NOT EXISTS Riparazione (
     Impiegato INT NOT NULL,
     Auto INT NOT NULL,
@@ -92,8 +119,17 @@ CREATE TABLE IF NOT EXISTS Riparazione (
     FOREIGN KEY (Auto) REFERENCES Auto(NTelaio)
 );
 
+CREATE TRIGGER IF NOT EXISTS checkRiparazione
+BEFORE INSERT ON Riparazione
+FOR EACH ROW
+BEGIN
+    IF (SELECT Categoria FROM Impiegato WHERE Matricola = NEW.Impiegato) <> "Meccanico" THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'L''impiegato non è un meccanico';
+    END IF;
+END;
+
 CREATE TABLE IF NOT EXISTS Cliente (
-    CodCliente INT NOT NULL,
+    CodCliente INT NOT NULL AUTO_INCREMENT,
     Nome VARCHAR(30) NOT NULL,
     Cognome VARCHAR(30) NOT NULL,
     DataNascita DATE NOT NULL,
@@ -112,3 +148,21 @@ CREATE TABLE IF NOT EXISTS Vendita (
     FOREIGN KEY (Auto) REFERENCES Auto(NTelaio),
     FOREIGN KEY (Cliente) REFERENCES Cliente(CodCliente)
 );
+
+CREATE TRIGGER IF NOT EXISTS checkVenditore
+BEFORE INSERT ON Vendita
+FOR EACH ROW
+BEGIN
+    IF (SELECT Categoria FROM Impiegato WHERE Matricola = NEW.Impiegato) <> "Venditore" THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'L''impiegato non è un venditore';
+    END IF;
+END;
+
+CREATE TRIGGER IF NOT EXISTS checkVenduta
+BEFORE INSERT ON Vendita
+FOR EACH ROW
+BEGIN
+    IF (SELECT Venduta FROM Auto WHERE NTelaio = NEW.Auto) <> 1 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'L''auto non è disponibile';
+    END IF;
+END;

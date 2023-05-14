@@ -5,7 +5,7 @@
 --  Created by F.P. Severino, R. G. Scolari and D. Campisi on 14/05/23.
 -- 
 
-CREATE DATABASE IF NOT EXISTS concessionaria;
+CREATE DATABASE IF NOT EXISTS concessionaria_db;
 
 CREATE TABLE IF NOT EXISTS Impiegato (
     Matricola INT NOT NULL AUTO_INCREMENT,
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS Auto (
     Colore VARCHAR(30) NOT NULL,
     KM INT NOT NULL,
     Venduta BOOLEAN NOT NULL,
-    Modello VARCHAR(30) NOT NULL,
+    Modello VARCHAR(40) NOT NULL,
     PRIMARY KEY (NTelaio),
     FOREIGN KEY (Modello) REFERENCES Modello(Nome)
 );
@@ -73,8 +73,8 @@ BEGIN
 END;
 
 CREATE TABLE IF NOT EXISTS Modello (
-    Nome VARCHAR(30) NOT NULL,
-    Marchio VARCHAR(30) NOT NULL,
+    Nome VARCHAR(40) NOT NULL,
+    Marchio VARCHAR(40) NOT NULL,
     Porte INT NOT NULL,
     Posti INT NOT NULL,
     PrezzoCons INT NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS Riparazione (
     Impiegato INT NOT NULL,
     Auto INT NOT NULL,
     Data DATE NOT NULL,
-    Descrizione VARCHAR(30) NOT NULL,
+    Descrizione VARCHAR(120) NOT NULL,
     PRIMARY KEY (Impiegato, Auto, Data, Descrizione),
     FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola),
     FOREIGN KEY (Auto) REFERENCES Auto(NTelaio)

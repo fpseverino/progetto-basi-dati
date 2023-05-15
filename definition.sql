@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS Motore (
     Trasmissione ENUM('Manuale', 'Automatica') NOT NULL,
     Trazione ENUM('Anteriore', 'Posteriore', 'Integrale') NOT NULL,
     CV INT NOT NULL,
+    CHECK (CV > 0),
     PRIMARY KEY (Nome)
 );
 
@@ -61,6 +62,8 @@ CREATE TABLE IF NOT EXISTS Modello (
     Posti INT NOT NULL,
     PrezzoCons INT NOT NULL,
     Motore VARCHAR(30) NOT NULL,
+    CHECK (Porte > 0),
+    CHECK (Posti > 0),
     PRIMARY KEY (Nome),
     FOREIGN KEY (Motore) REFERENCES Motore(Nome)
 );
@@ -72,6 +75,7 @@ CREATE TABLE IF NOT EXISTS Auto (
     KM INT NOT NULL,
     Venduta BOOLEAN NOT NULL,
     Modello VARCHAR(40) NOT NULL,
+    CHECK (KM >= 0),
     PRIMARY KEY (NTelaio),
     FOREIGN KEY (Modello) REFERENCES Modello(Nome)
 );

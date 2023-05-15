@@ -85,7 +85,7 @@ INSERT INTO Auto (Ntelaio, Colore, KM, Venduta, Modello) VALUES
     (9, 'Nero Opaco', 0, FALSE, 'M5 (Competition)'),
     (10, 'Nero Metallizzato', 0, TRUE, '911 (Carrera)'),
     (11, 'Rosso Metallizzato', 0, TRUE, '911 (Carrera)'),
-    (12, 'Nero Metallizzato', 50000, FALSE, 'Panamera');
+    (12, 'Nero Metallizzato', 50000, FALSE, 'Panamera'),
     (13, 'Bianco perla', 13000, FALSE, 'Polo'),
     (14, 'Rosso Metallizzato', 0, FALSE, 'Polo GTI'),
     (15, 'Nero Opaco', 0, FALSE, 'Golf (8)'),

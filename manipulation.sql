@@ -73,7 +73,7 @@ INSERT INTO Modello (Nome, Marchio, Porte, Posti, PrezzoCons, Motore) VALUES
     ('Q8 (E-TRON)', 'Audi', 5, 5, 81600, '50 Quattro');    
 
 
-INSERT INTO Auto (Ntelaio, Colore, KM, Venduta, Modello) VALUES 
+INSERT INTO Auto (NTelaio, Colore, KM, Venduta, Modello) VALUES 
     (1, 'Blu Opaco', 0, FALSE, 'Serie 1 (118i)'),
     (2, 'Blu Opaco', 0, FALSE, 'Serie 1 (118i)'),
     (3, 'Nero Pastello', 0, FALSE, 'Serie 3 (320d)'),
@@ -141,7 +141,6 @@ INSERT INTO Disponibilita (Auto, Sede) VALUES
 
 
 INSERT INTO Specializzazione (Impiegato, Motore) VALUES 
-
     (10, 'BMW B47'),  
     (10, 'BMW S63'),  
     (10, 'TSI 1.0'),  

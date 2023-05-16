@@ -56,3 +56,31 @@ WHERE Provincia = 'MI';
 SELECT DataNascita
 FROM Impiegato
 WHERE Stipendio > 2000;
+
+-- 6 interrogazioni con Join (con almeno tre di esse su più di due relazioni);
+
+-- 4 interrogazioni con operatori aggregati, di cui 2 con HAVING;
+
+SELECT Marchio, MAX(PrezzoCons) AS PrezzoMassimo
+FROM Modello
+GROUP BY Marchio
+HAVING PrezzoMassimo > 100000;
+
+SELECT SUM(Prezzo) AS Ricavi2023
+FROM Vendita
+WHERE Data >= '2023-01-01';
+
+SELECT Categoria, AVG(Stipendio) AS StipendioMedio
+FROM Impiegato
+GROUP BY Categoria
+HAVING StipendioMedio >= 2000;
+
+SELECT COUNT(*) AS NumMotoriBenzina
+FROM Motore
+WHERE Alimentazione = 'Benzina';
+
+-- 5 interrogazioni nidificate (almeno una che preveda binding e una che preveda due sotto-livelli);
+
+-- 2 interrogazioni che impieghino viste;
+
+-- 3 interrogazioni con operatori insiemistici.

@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS Modello (
 
 
 CREATE TABLE IF NOT EXISTS Auto (
-    NTelaio INT NOT NULL,
+    NTelaio VARCHAR(17) NOT NULL,
     Colore VARCHAR(30) NOT NULL,
     KM INT NOT NULL,
     Venduta BOOLEAN NOT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS Auto (
 );
 
 CREATE TABLE IF NOT EXISTS Disponibilita (
-    Auto INT NOT NULL,
+    Auto VARCHAR(17) NOT NULL,
     Sede INT NOT NULL,
     PRIMARY KEY (Auto, Sede),
     FOREIGN KEY (Auto) REFERENCES Auto(NTelaio),
@@ -117,7 +117,7 @@ END;
 
 CREATE TABLE IF NOT EXISTS Riparazione (
     Impiegato INT NOT NULL,
-    Auto INT NOT NULL,
+    Auto VARCHAR(17) NOT NULL,
     Data DATE NOT NULL,
     Descrizione VARCHAR(120) NOT NULL,
     PRIMARY KEY (Impiegato, Auto, Data, Descrizione),
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS Cliente (
 
 CREATE TABLE IF NOT EXISTS Vendita (
     Impiegato INT NOT NULL,
-    Auto INT NOT NULL,
+    Auto VARCHAR(17) NOT NULL,
     Cliente INT NOT NULL,
     Data DATE NOT NULL,
     Prezzo INT NOT NULL,

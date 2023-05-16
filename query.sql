@@ -14,3 +14,45 @@
 
 
 USE concessionaria_db;
+
+-- 10 interrogazioni semplici su singola tabella;
+
+SELECT Nome
+FROM Motore
+WHERE CV > 199;
+
+SELECT Nome
+FROM Modello
+WHERE Porte < 5;
+
+SELECT CF
+FROM Impiegato
+WHERE Contratto = 'Determinato';
+
+SELECT Modello
+FROM Auto
+WHERE KM = 0;
+
+SELECT Data
+FROM Riparazione
+WHERE Descrizione = 'Cambio olio';
+
+SELECT Data
+FROM Vendita
+WHERE Prezzo > 100000;
+
+SELECT Modello
+FROM Auto
+WHERE Colore = 'Rosso' AND Venduta = 0;
+
+SELECT Nome, Cognome
+FROM Impiegato
+WHERE Categoria = 'Contabile';
+
+SELECT Indirizzo
+FROM Sede
+WHERE Provincia = 'MI';
+
+SELECT DataNascita
+FROM Impiegato
+WHERE Stipendio > 2000;

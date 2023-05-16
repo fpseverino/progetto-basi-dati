@@ -31,7 +31,7 @@ WHERE Contratto = 'Determinato';
 
 SELECT Modello
 FROM Auto
-WHERE KM = 0;
+WHERE KM <> 0;
 
 SELECT Data
 FROM Riparazione
@@ -59,9 +59,42 @@ WHERE Stipendio > 2000;
 
 -- 6 interrogazioni con Join (con almeno tre di esse su più di due relazioni);
 
+SELECT Nome, Cognome
+FROM Impiegato JOIN Manager ON Impiegato.Matricola = Manager.Impiegato
+WHERE Incarico = 'Direttore';
+
+SELECT Nome, Cognome, Categoria
+FROM Impiegato JOIN Sede ON Impiegato.Sede = Sede.NumSede
+WHERE Comune = 'Milano';
+
+SELECT DISTINCT Nome, Cognome
+FROM Impiegato JOIN Vendita ON Impiegato.Matricola = Vendita.Venditore
+WHERE Prezzo > 100000;
+
+SELECT Motore.Nome
+FROM Motore 
+JOIN Modello ON Motore.Nome = Modello.Motore
+JOIN Auto ON Modello.Nome = Auto.Modello
+WHERE Auto.Colore = 'Rosso Metallizzato';
+
+SELECT Impiegato.Nome, Impiegato.Cognome
+FROM Impiegato
+JOIN Specializzazione ON Impiegato.Matricola = Specializzazione.Impiegato
+JOIN Motore ON Specializzazione.Motore = Motore.Nome
+JOIN Modello ON Motore.Nome = Modello.Motore
+JOIN Auto ON Modello.Nome = Auto.Modello
+JOIN Vendita ON Auto.NTelaio = Vendita.Auto
+JOIN Cliente ON Vendita.Cliente = Cliente.CodCliente
+WHERE Cliente.Nome = 'Laura' AND Cliente.Cognome = 'Bianchi';
+
+SELECT Impiegato.Nome, Impiegato.Cognome, Manager.Incarico, Sede.Comune, Sede.NumSede
+FROM Manager
+JOIN Impiegato ON Manager.Impiegato = Impiegato.Matricola
+RIGHT JOIN Sede ON Impiegato.Sede = Sede.NumSede;
+
 -- 4 interrogazioni con operatori aggregati, di cui 2 con HAVING;
 
-SELECT Marchio, MAX(PrezzoCons) AS PrezzoMassimo
+SELECT Marchio, MAX(PrezzoCons) AS PrezzoConsMassimo
 FROM Modello
 GROUP BY Marchio
 HAVING PrezzoMassimo > 100000;
@@ -70,7 +103,7 @@ SELECT SUM(Prezzo) AS Ricavi2023
 FROM Vendita
 WHERE Data >= '2023-01-01';
 
-SELECT Categoria, AVG(Stipendio) AS StipendioMedio
+SELECT Categoria, AVG(Stipendio) AS StipendioMedioSopra2000
 FROM Impiegato
 GROUP BY Categoria
 HAVING StipendioMedio >= 2000;

@@ -5,14 +5,6 @@
 --  Created by F.P. Severino, R. G. Scolari and D. Campisi on 14/05/23.
 -- 
 
--- 1.	Impiegati che hanno acquistato una macchina
--- 2.	Venditori/Meccanici/Contabili sottoposti di un Manager specifico
--- 3.	Quali meccanici possono lavorare sulla macchina del cliente X
--- 4.	Quante macchine ha venduto il venditore X
--- 5.	Chi ha venduto le macchine a cui ha lavorato il meccanico X
--- 6.	Auto vendute nella sede X
-
-
 USE concessionaria_db;
 
 -- 10 interrogazioni semplici su singola tabella;
@@ -115,5 +107,19 @@ WHERE Alimentazione = 'Benzina';
 -- 5 interrogazioni nidificate (almeno una che preveda binding e una che preveda due sotto-livelli);
 
 -- 2 interrogazioni che impieghino viste;
+
+CREATE OR REPLACE VIEW SedeVenditori AS
+SELECT Impiegato.Nome, Impiegato.Cognome, Sede.Comune
+FROM Impiegato JOIN Sede ON Impiegato.Sede = Sede.NumSede
+WHERE Impiegato.Categoria = 'Venditore';
+
+SELECT * FROM SedeVenditori;
+
+CREATE OR REPLACE VIEW ModelliSopraMedia AS
+SELECT Modello.Nome, Modello.Marchio, Modello.PrezzoCons
+FROM Modello
+WHERE Modello.PrezzoCons > (SELECT AVG(PrezzoCons) FROM Modello);
+
+SELECT * FROM ModelliSopraMedia;
 
 -- 3 interrogazioni con operatori insiemistici.

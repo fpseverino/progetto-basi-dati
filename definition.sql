@@ -25,6 +25,10 @@ CREATE TABLE IF NOT EXISTS Impiegato (
     Stipendio INT NOT NULL,
     Sede INT NOT NULL,
     Categoria ENUM('Venditore', 'Manager', 'Meccanico', 'Contabile') NOT NULL, -- enum non necessario, ma rispetta il modello
+    CHECK (LENGTH(CF) = 16),
+    CHECK (Contratto IN ('Determinato', 'Indeterminato')),
+    CHECK (Stipendio > 0),
+    CHECK (Categoria IN ('Venditore', 'Manager', 'Meccanico', 'Contabile')),
     PRIMARY KEY (Matricola),
     FOREIGN KEY (Sede) REFERENCES Sede(NumSede)
 );
@@ -51,6 +55,9 @@ CREATE TABLE IF NOT EXISTS Motore (
     Trasmissione ENUM('Manuale', 'Automatica') NOT NULL,
     Trazione ENUM('Anteriore', 'Posteriore', 'Integrale') NOT NULL,
     CV INT NOT NULL,
+    CHECK (Alimentazione IN ('Diesel', 'Benzina', 'GPL', 'Ibrida', 'Elettrica')),
+    CHECK (Trasmissione IN ('Manuale', 'Automatica')),
+    CHECK (Trazione IN ('Anteriore', 'Posteriore', 'Integrale')),
     CHECK (CV > 0),
     PRIMARY KEY (Nome)
 );
@@ -64,6 +71,7 @@ CREATE TABLE IF NOT EXISTS Modello (
     Motore VARCHAR(30) NOT NULL,
     CHECK (Porte > 0),
     CHECK (Posti > 0),
+    CHECK (PrezzoCons > 0),
     PRIMARY KEY (Nome),
     FOREIGN KEY (Motore) REFERENCES Motore(Nome)
 );
@@ -75,6 +83,7 @@ CREATE TABLE IF NOT EXISTS Auto (
     KM INT NOT NULL,
     Venduta BOOLEAN NOT NULL,
     Modello VARCHAR(40) NOT NULL,
+    CHECK (LENGTH(NTelaio) = 17),
     CHECK (KM >= 0),
     PRIMARY KEY (NTelaio),
     FOREIGN KEY (Modello) REFERENCES Modello(Nome)
@@ -96,7 +105,6 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'L''auto è già stata venduta';
     END IF;
 END;
-
 
 CREATE TABLE IF NOT EXISTS Specializzazione (
     Impiegato INT NOT NULL,

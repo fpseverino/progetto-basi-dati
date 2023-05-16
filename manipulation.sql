@@ -43,18 +43,18 @@ INSERT INTO Manager (Impiegato, Incarico) VALUES
 INSERT INTO Motore (Nome, Alimentazione, Trasmissione, Trazione, CV) VALUES
     ('BMW B38', 'Benzina', 'Manuale', 'Anteriore', 109),          
     ('BMW B47', 'Diesel', 'Manuale', 'Posteriore', 190),           
-    ('BMW B48', 'Ibrida', 'Automatico', 'Integrale', 292),        
+    ('BMW B48', 'Ibrida', 'Automatica', 'Integrale', 292),        
     ('BMW S58', 'Benzina', 'Manuale', 'Posteriore', 510),         
     ('BMW S63', 'Benzina', 'Manuale', 'Posteriore', 625),        
-    ('Porsche 9A2', 'Benzina', 'Automatico', 'Posteriore', 385),   
-    ('Porsche PDK', 'Benzina', 'Automatico', 'Posteriore', 330),   
+    ('Porsche 9A2', 'Benzina', 'Automatica', 'Posteriore', 385),   
+    ('Porsche PDK', 'Benzina', 'Automatica', 'Posteriore', 330),   
     ('TSI 1.0', 'Benzina', 'Manuale', 'Anteriore', 95), 
-    ('TSI 2.0', 'Benzina', 'Automatico', 'Anteriore', 207),  
+    ('TSI 2.0', 'Benzina', 'Automatica', 'Anteriore', 207),  
     ('TDI 2.0', 'Diesel', 'Manuale', 'Anteriore', 150),   
-    ('TDI SCR 2.0', 'Diesel', 'Automatico', 'Integrale', 200),  
-    ('TFSI 1.5', 'Benzina', 'Automatico', 'Anteriore', 116),   
-    ('TDI 3.0', 'Diesel', 'Automatico', 'Integrale', 400),  
-    ('50 Quattro', 'Ibrida', 'Automatico', 'Integrale', 340); 
+    ('TDI SCR 2.0', 'Diesel', 'Automatica', 'Integrale', 200),  
+    ('TFSI 1.5', 'Benzina', 'Automatica', 'Anteriore', 116),   
+    ('TDI 3.0', 'Diesel', 'Automatica', 'Integrale', 400),  
+    ('50 Quattro', 'Ibrida', 'Automatica', 'Integrale', 340); 
 
 INSERT INTO Modello (Nome, Marchio, Porte, Posti, PrezzoCons, Motore) VALUES
     ('Serie 1 (118i)', 'BMW', 5, 5, 31300, 'BMW B38'),

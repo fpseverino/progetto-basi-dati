@@ -139,6 +139,22 @@ WHERE EXISTS (
     I1.CF <> I.CF
 );
 
+SELECT Nome
+FROM Motore
+WHERE Nome IN (
+    SELECT Motore
+    FROM Specializzazione
+    WHERE Impiegato IN (
+        SELECT Matricola
+        FROM Impiegato
+        WHERE Sede = (
+            SELECT NumSede
+            FROM Sede
+            WHERE Comune = 'Milano' AND Indirizzo = 'Piazza del Liberty 1'
+        )
+    )
+);
+
 -- 2 interrogazioni che impieghino viste;
 
 CREATE OR REPLACE VIEW SedeVenditori AS

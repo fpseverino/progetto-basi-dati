@@ -125,9 +125,7 @@ INSERT INTO Disponibilita (Auto, Sede) VALUES
     ('WP0AA2A75BL000016', 3),
     ('TRUWT28N611000019', 2),
     ('SJNFAAZE0U6000020', 4),
-    ('RLSAW663X72000021', 4), 
     ('QXZT2345678000022', 4),
-    ('P0ABCDEF123000023', 5),
     ('NMTKHMBX3JR000024', 5),
     ('MNTF4AC12A0000025', 5),
     ('LUCGGN1S2JY000026', 5), 
@@ -135,10 +133,7 @@ INSERT INTO Disponibilita (Auto, Sede) VALUES
     ('JHLRE48757C000028', 5),           
     ('HFC33EEDCBA000029', 4), 
     ('GKLMMNPRSTU000030', 4),
-    ('FZVAAABBBCC000031', 2),   
-    ('E4M56H78901000032', 2),
-    ('D7G89K34567000033', 2);   
-
+    ('FZVAAABBBCC000031', 2);
 
 INSERT INTO Specializzazione (Impiegato, Motore) VALUES 
     (10, 'BMW B47'),  
@@ -186,7 +181,9 @@ INSERT INTO Cliente (Nome, Cognome, DataNascita, CF) VALUES
     ('Roberto', 'Marini', '1992-12-03', 'MRNRTO92T03E543A'),
     ('Erika', 'Marchetti', '1986-07-07', 'MRCERK86L07Z987R'),
     ('Paolo', 'Ricci', '1993-05-02', 'RCCPLA93E02F234L'),
-    ('Lucia', 'Millunzi', '1954-12-05', 'MLLZCI54T45E841L');    
+    ('Lucia', 'Millunzi', '1954-12-05', 'MLLZCI54T45E841L'),
+    ('Pietro', 'Macafuso', '1999-08-08', 'MCFPTR99M08G273P'),
+    ('Maura', 'Cavallo', '2000-04-09', 'CVLMRA00D49A944N');
 
 INSERT INTO Vendita (Impiegato, Auto, Cliente, Data, Prezzo) VALUES 
     (1, '6G2EC57Y89L600006', 1, '2021-06-11', 49800),
@@ -196,4 +193,6 @@ INSERT INTO Vendita (Impiegato, Auto, Cliente, Data, Prezzo) VALUES
     (3, 'VF1KG1PBEA4000017', 5, '2022-10-20', 33100),
     (3, 'U5YHN811BGL000018', 6, '2022-11-02', 53000),
     (4, 'E4M56H78901000032', 7, '2023-02-04', 49000),
-    (5, 'D7G89K34567000033', 8, '2023-03-09', 99000);                        
+    (5, 'D7G89K34567000033', 8, '2023-03-09', 99000),
+    (4, 'RLSAW663X72000021', 9, '2023-04-12', 30000),
+    (5, 'P0ABCDEF123000023', 10, '2023-05-15', 99000);

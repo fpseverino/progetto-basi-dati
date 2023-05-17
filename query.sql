@@ -123,3 +123,15 @@ WHERE Modello.PrezzoCons > (SELECT AVG(PrezzoCons) FROM Modello);
 SELECT * FROM ModelliSopraMedia;
 
 -- 3 interrogazioni con operatori insiemistici.
+
+SELECT Nome, Cognome
+FROM Impiegato
+    INTERSECT
+SELECT Nome, Cognome
+FROM Cliente;
+
+SELECT NTelaio
+FROM Auto
+    EXCEPT
+SELECT Auto
+FROM Riparazione;

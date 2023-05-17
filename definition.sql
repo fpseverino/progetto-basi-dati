@@ -7,6 +7,8 @@
 
 CREATE DATABASE IF NOT EXISTS concessionaria_db;
 
+USE concessionaria_db;
+
 CREATE TABLE IF NOT EXISTS Sede (
     NumSede INT NOT NULL AUTO_INCREMENT,
     Comune VARCHAR(30) NOT NULL,

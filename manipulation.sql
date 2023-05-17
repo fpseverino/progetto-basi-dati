@@ -39,7 +39,7 @@ INSERT INTO Manager (Impiegato, Incarico) VALUES
     (6, 'Direttore'),
     (7, 'Capo Vendite'),
     (8, 'Gestore Sede'),
-    (9, 'Vice Direttore')
+    (9, 'Vice Direttore'),
     (19, 'Capo Contabilità');
 
 INSERT INTO Motore (Nome, Alimentazione, Trasmissione, Trazione, CV) VALUES

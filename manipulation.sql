@@ -94,9 +94,9 @@ INSERT INTO Auto (NTelaio, Colore, KM, Venduta, Modello) VALUES
     ('U5YHN811BGL000018', 'Blu Acquamarina', 0, TRUE, 'Passat (Variant)'),    
     ('TRUWT28N611000019', 'Grigio Metallizzato', 40000, FALSE, 'A3'),
     ('SJNFAAZE0U6000020', 'Nero Opaco', 0, FALSE, 'A3'),
-    ('RLSAW663X72000021', 'Nero Opaco', 0, FALSE, 'A3'),
+    ('RLSAW663X72000021', 'Nero Opaco', 0, TRUE, 'A3'),
     ('QXZT2345678000022', 'Nero Opaco', 0, FALSE, 'A3'),
-    ('P0ABCDEF123000023', 'Nero Lucido', 0, FALSE, 'RS4'),
+    ('P0ABCDEF123000023', 'Nero Lucido', 0, TRUE, 'RS4'),
     ('NMTKHMBX3JR000024', 'Bianco Panna', 0, FALSE, 'Q8 (E-TRON)'),
     ('MNTF4AC12A0000025', 'Bianco Perla', 0, FALSE, 'Serie 3 (320d)'),
     ('LUCGGN1S2JY000026', 'Blu Metallizzato', 0, FALSE, 'Serie 3 (320d)'),
@@ -105,8 +105,8 @@ INSERT INTO Auto (NTelaio, Colore, KM, Venduta, Modello) VALUES
     ('HFC33EEDCBA000029', 'Viola Metallizzato', 0, FALSE, 'Polo'),
     ('GKLMMNPRSTU000030', 'Viola Metallizzato', 1000, FALSE, 'Polo'),
     ('FZVAAABBBCC000031', 'Giallo Racing', 0, FALSE, 'Golf (8)'),
-    ('E4M56H78901000032', 'Nero Lucido', 10000, FALSE, 'Passat (Variant)'),
-    ('D7G89K34567000033', 'Celeste Pastello', 0, FALSE, 'RS4'),   
+    ('E4M56H78901000032', 'Nero Lucido', 10000, TRUE, 'Passat (Variant)'),
+    ('D7G89K34567000033', 'Celeste Pastello', 0, TRUE, 'RS4'),   
     ('C8H10N4O283000034', 'Blu Perlato', 23000, TRUE, 'Golf (8)'),
     ('B9J11K22L33000035', 'Rosa Pastello', 0, TRUE, 'RS4');   
 

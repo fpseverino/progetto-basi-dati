@@ -35,7 +35,7 @@ WHERE Prezzo > 100000;
 
 SELECT Modello
 FROM Auto
-WHERE Colore = 'Rosso' AND Venduta = 0;
+WHERE Colore = 'Rosso Metallizzato' AND Venduta = 0;
 
 SELECT Nome, Cognome
 FROM Impiegato
@@ -60,7 +60,7 @@ FROM Impiegato JOIN Sede ON Impiegato.Sede = Sede.NumSede
 WHERE Comune = 'Milano';
 
 SELECT DISTINCT Nome, Cognome
-FROM Impiegato JOIN Vendita ON Impiegato.Matricola = Vendita.Venditore
+FROM Impiegato JOIN Vendita ON Impiegato.Matricola = Vendita.Impiegato
 WHERE Prezzo > 100000;
 
 SELECT Motore.Nome
@@ -89,7 +89,7 @@ RIGHT JOIN Sede ON Impiegato.Sede = Sede.NumSede;
 SELECT Marchio, MAX(PrezzoCons) AS PrezzoConsMassimo
 FROM Modello
 GROUP BY Marchio
-HAVING PrezzoMassimo > 100000;
+HAVING PrezzoConsMassimo > 100000;
 
 SELECT SUM(Prezzo) AS Ricavi2023
 FROM Vendita
@@ -98,7 +98,7 @@ WHERE Data >= '2023-01-01';
 SELECT Categoria, AVG(Stipendio) AS StipendioMedioSopra2000
 FROM Impiegato
 GROUP BY Categoria
-HAVING StipendioMedio >= 2000;
+HAVING StipendioMedioSopra2000 >= 2000;
 
 SELECT COUNT(*) AS NumMotoriBenzina
 FROM Motore
@@ -191,5 +191,5 @@ FROM (
     FROM Auto
         EXCEPT
     SELECT Auto
-    FROM Riparazione;
+    FROM Riparazione
 ) x; 

@@ -106,6 +106,39 @@ WHERE Alimentazione = 'Benzina';
 
 -- 5 interrogazioni nidificate (almeno una che preveda binding e una che preveda due sotto-livelli);
 
+SELECT *
+FROM Impiegato
+WHERE Sede = ANY (
+    SELECT NumSede
+    FROM Sede
+    WHERE Comune = 'Milano'
+);
+
+SELECT Comune, Provincia
+FROM Sede
+WHERE NumSede <> ALL (
+    SELECT Sede
+    FROM Impiegato
+    WHERE Cognome = 'Ferrari'
+);
+
+SELECT *
+FROM Impiegato
+WHERE Stipendio >= ALL (
+    SELECT Stipendio
+    FROM Impiegato
+);
+
+SELECT *
+FROM Impiegato I
+WHERE EXISTS (
+    SELECT *
+    FROM Impiegato I1
+    WHERE I1.Nome = I.Nome AND
+    I1.Cognome = I.Cognome AND
+    I1.CF <> I.CF
+);
+
 -- 2 interrogazioni che impieghino viste;
 
 CREATE OR REPLACE VIEW SedeVenditori AS
@@ -126,12 +159,21 @@ SELECT * FROM ModelliSopraMedia;
 
 SELECT Nome, Cognome
 FROM Impiegato
+    UNION
+SELECT Nome, Cognome
+FROM Cliente;
+
+SELECT Nome, Cognome
+FROM Impiegato
     INTERSECT
 SELECT Nome, Cognome
 FROM Cliente;
 
-SELECT NTelaio
-FROM Auto
-    EXCEPT
-SELECT Auto
-FROM Riparazione;
+SELECT COUNT(*) AS NumAutoNonRiparate
+FROM (
+    SELECT NTelaio
+    FROM Auto
+        EXCEPT
+    SELECT Auto
+    FROM Riparazione;
+) x; 

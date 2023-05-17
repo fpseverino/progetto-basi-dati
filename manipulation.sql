@@ -32,13 +32,15 @@ INSERT INTO Impiegato (Nome, Cognome, DataNascita, CF, Contratto, Stipendio, Sed
     ('Carlo', 'Cracco', '1992-08-11', 'CRCCRL92M11E491S', 'Indeterminato', 1600, 3, 'Meccanico'), 
     ('Mimmo', 'Calafiore', '1991-04-10', 'CLFMMO91D10F205Y', 'Determinato', 1600, 5, 'Meccanico'),     
     ('Maura', 'Cavallo', '2000-04-09', 'CVLMRA00D49A944N', 'Indeterminato', 2000, 1, 'Contabile'),
-    ('Germano', 'Cristiani', '1980-01-06', 'CRSGMN80A06C351Q', 'Determinato', 2000, 2, 'Contabile');
+    ('Germano', 'Cristiani', '1980-01-06', 'CRSGMN80A06C351Q', 'Determinato', 2000, 2, 'Contabile'),
+    ('Damiano', 'Gentile', '2000-09-21', 'GNTDMN00P21B429B', 'Indeterminato', 2700, 5, 'Manager');
 
 INSERT INTO Manager (Impiegato, Incarico) VALUES
     (6, 'Direttore'),
     (7, 'Capo Vendite'),
     (8, 'Gestore Sede'),
-    (9, 'Vice Direttore');
+    (9, 'Vice Direttore')
+    (19, 'Capo Contabilità');
 
 INSERT INTO Motore (Nome, Alimentazione, Trasmissione, Trazione, CV) VALUES
     ('BMW B38', 'Benzina', 'Manuale', 'Anteriore', 109),          

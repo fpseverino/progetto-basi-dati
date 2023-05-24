@@ -32,14 +32,14 @@ CREATE TABLE IF NOT EXISTS Impiegato (
     CHECK (Stipendio > 0),
     CHECK (Categoria IN ('Venditore', 'Manager', 'Meccanico', 'Contabile')),
     PRIMARY KEY (Matricola),
-    FOREIGN KEY (Sede) REFERENCES Sede(NumSede)
+    FOREIGN KEY (Sede) REFERENCES Sede(NumSede) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Manager (
     Impiegato INT NOT NULL,
     Incarico VARCHAR(30) NOT NULL,
     PRIMARY KEY (Impiegato),
-    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola)
+    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola) ON DELETE CASCADE
 );
 
 DELIMITER //
@@ -79,9 +79,8 @@ CREATE TABLE IF NOT EXISTS Modello (
     CHECK (Posti > 0),
     CHECK (PrezzoCons > 0),
     PRIMARY KEY (Nome),
-    FOREIGN KEY (Motore) REFERENCES Motore(Nome)
+    FOREIGN KEY (Motore) REFERENCES Motore(Nome) ON DELETE CASCADE
 );
-
 
 CREATE TABLE IF NOT EXISTS Auto (
     NTelaio VARCHAR(17) NOT NULL,
@@ -92,15 +91,15 @@ CREATE TABLE IF NOT EXISTS Auto (
     CHECK (LENGTH(NTelaio) = 17),
     CHECK (KM >= 0),
     PRIMARY KEY (NTelaio),
-    FOREIGN KEY (Modello) REFERENCES Modello(Nome)
+    FOREIGN KEY (Modello) REFERENCES Modello(Nome) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Disponibilita (
     Auto VARCHAR(17) NOT NULL,
     Sede INT NOT NULL,
     PRIMARY KEY (Auto, Sede),
-    FOREIGN KEY (Auto) REFERENCES Auto(NTelaio),
-    FOREIGN KEY (Sede) REFERENCES Sede(NumSede)
+    FOREIGN KEY (Auto) REFERENCES Auto(NTelaio) ON DELETE CASCADE,
+    FOREIGN KEY (Sede) REFERENCES Sede(NumSede) ON DELETE CASCADE
 );
 
 DELIMITER //
@@ -120,8 +119,8 @@ CREATE TABLE IF NOT EXISTS Specializzazione (
     Impiegato INT NOT NULL,
     Motore VARCHAR(30) NOT NULL,
     PRIMARY KEY (Impiegato, Motore),
-    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola),
-    FOREIGN KEY (Motore) REFERENCES Motore(Nome)
+    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola) ON DELETE CASCADE,
+    FOREIGN KEY (Motore) REFERENCES Motore(Nome) ON DELETE CASCADE
 );
 
 DELIMITER //
@@ -143,8 +142,8 @@ CREATE TABLE IF NOT EXISTS Riparazione (
     Data DATE NOT NULL,
     Descrizione VARCHAR(120) NOT NULL,
     PRIMARY KEY (Impiegato, Auto, Data, Descrizione),
-    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola),
-    FOREIGN KEY (Auto) REFERENCES Auto(NTelaio)
+    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola) ON DELETE SET NULL,
+    FOREIGN KEY (Auto) REFERENCES Auto(NTelaio) ON DELETE SET NULL
 );
 
 DELIMITER //
@@ -176,9 +175,9 @@ CREATE TABLE IF NOT EXISTS Vendita (
     Data DATE NOT NULL,
     Prezzo INT NOT NULL,
     PRIMARY KEY (Impiegato, Auto, Cliente, Data),
-    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola),
-    FOREIGN KEY (Auto) REFERENCES Auto(NTelaio),
-    FOREIGN KEY (Cliente) REFERENCES Cliente(CodCliente)
+    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola) ON DELETE SET NULL,
+    FOREIGN KEY (Auto) REFERENCES Auto(NTelaio) ON DELETE SET NULL,
+    FOREIGN KEY (Cliente) REFERENCES Cliente(CodCliente) ON DELETE SET NULL
 );
 
 DELIMITER //

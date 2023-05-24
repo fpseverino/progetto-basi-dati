@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS Impiegato (
     CF VARCHAR(16) NOT NULL,
     Contratto ENUM('Determinato', 'Indeterminato') NOT NULL,
     Stipendio INT NOT NULL,
-    Sede INT NOT NULL,
+    Sede INT,
     Categoria ENUM('Venditore', 'Manager', 'Meccanico', 'Contabile') NOT NULL, -- enum non necessario, ma rispetta il modello
     CHECK (LENGTH(CF) = 16),
     CHECK (Contratto IN ('Determinato', 'Indeterminato')),
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS Auto (
     Colore VARCHAR(30) NOT NULL,
     KM INT NOT NULL,
     Venduta BOOLEAN NOT NULL,
-    Modello VARCHAR(40) NOT NULL,
+    Modello VARCHAR(40),
     CHECK (LENGTH(NTelaio) = 17),
     CHECK (KM >= 0),
     PRIMARY KEY (NTelaio),
@@ -142,8 +142,8 @@ CREATE TABLE IF NOT EXISTS Riparazione (
     Data DATE NOT NULL,
     Descrizione VARCHAR(120) NOT NULL,
     PRIMARY KEY (Impiegato, Auto, Data, Descrizione),
-    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola) ON DELETE SET NULL,
-    FOREIGN KEY (Auto) REFERENCES Auto(NTelaio) ON DELETE SET NULL
+    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola),
+    FOREIGN KEY (Auto) REFERENCES Auto(NTelaio)
 );
 
 DELIMITER //
@@ -175,9 +175,9 @@ CREATE TABLE IF NOT EXISTS Vendita (
     Data DATE NOT NULL,
     Prezzo INT NOT NULL,
     PRIMARY KEY (Impiegato, Auto, Cliente, Data),
-    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola) ON DELETE SET NULL,
-    FOREIGN KEY (Auto) REFERENCES Auto(NTelaio) ON DELETE SET NULL,
-    FOREIGN KEY (Cliente) REFERENCES Cliente(CodCliente) ON DELETE SET NULL
+    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola),
+    FOREIGN KEY (Auto) REFERENCES Auto(NTelaio),
+    FOREIGN KEY (Cliente) REFERENCES Cliente(CodCliente)
 );
 
 DELIMITER //

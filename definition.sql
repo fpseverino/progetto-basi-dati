@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Impiegato (
     Nome VARCHAR(30) NOT NULL,
     Cognome VARCHAR(30) NOT NULL,
     DataNascita DATE NOT NULL,
-    CF VARCHAR(16) NOT NULL,
+    CF VARCHAR(16) NOT NULL UNIQUE,
     Contratto ENUM('Determinato', 'Indeterminato') NOT NULL,
     Stipendio INT NOT NULL,
     Sede INT,
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS Cliente (
     Nome VARCHAR(30) NOT NULL,
     Cognome VARCHAR(30) NOT NULL,
     DataNascita DATE NOT NULL,
-    CF VARCHAR(16) NOT NULL,
+    CF VARCHAR(16) NOT NULL UNIQUE,
     PRIMARY KEY (CodCliente)
 );
 

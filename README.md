@@ -1,9 +1,9 @@
 # progetto-basi-dati
-## Corso di Basi di Dati UNIKORE A.A. 2022/2023 - Progetto di fine semestre
+Corso di Basi di Dati UNIKORE A.A. 2022/2023 - Progetto di fine semestre
 
-### Database di una concessionaria d'auto
+## Database di una concessionaria d'auto
 
-#### Caratteristiche del progetto
+### Caratteristiche del progetto
 Creazione in SQL di tutte le tabelle e creazione di opportuni vincoli di integrità inter-referenziali, intra-referenziali e check.
 
 Si devono prevedere inoltre le seguenti interrogazioni:
@@ -14,7 +14,7 @@ Si devono prevedere inoltre le seguenti interrogazioni:
 - 2 interrogazioni che impieghino viste;
 - 3 interrogazioni con operatori insiemistici.
 
-#### Schema logico
+### Schema logico
 - Impiegato(<ins>Matricola</ins>, Nome, Cognome, DataNascita, CF, Contratto, Stipendio, Sede, Categoria)
 - Sede(<ins>NumSede</ins>, Comune, Provincia, Indirizzo)
 - Manager(<ins>Impiegato</ins>, Incarico)
